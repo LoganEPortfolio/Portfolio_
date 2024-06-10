@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Logan's Projects{% endblock title %}
+
+{% block content %}
+            <!-- Projects Section-->
+            <section class="py-5">
+                <div class="container px-5 mb-5">
+                    <div class="text-center mb-5">
+                        <h1 class="display-5 fw-bolder mb-3"><span class="text-gradient d-inline">Projects</span></h1>
+                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+                            <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="{{url_for('projects', lang='js' )}}">JavaScript</a>
+                            <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="{{url_for('projects', lang='python')}}">Python</a>
+                            <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="{{url_for('projects')}}">All</a>
+                        </div>
+                    </div>
+                    
+                    {% for project in  projects %}
+                    <div class="row gx-5 justify-content-center">
+                       <div class="col-lg-11 col-xl-9 col-xxl-8">
+                             <!--Project Card-->
+                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                                <div class="card-body p-0">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="p-5">
+                                            <h2 class="fw-bolder"><a target='_blank' class='project-name-anchor' href="{{project.project_link}}">{{project.name}}</a></h2>
+                                            <p>{{project.content}}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img src="{{url_for('static', filename=project.img_link)}}" alt="" class="img-fluid img-thumbnail" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+            </section>
+            <!-- Call to action section-->
+            <section class="py-5 bg-gradient-primary-to-secondary text-white">
+                <div class="container px-5 my-5">
+                    <div class="text-center">
+                        <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
+                        <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="{{url_for('contact')}}">Contact me</a>
+                    </div>
+                </div>
+            </section>
+
+{% endblock content %}
